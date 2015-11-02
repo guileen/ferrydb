@@ -1,3 +1,5 @@
+// Copyright 2015 FerryDB.
+
 // Copyright 2015 Reborndb Org. All Rights Reserved.
 // Licensed under the MIT (MIT-LICENSE.txt) license.
 
@@ -6,8 +8,8 @@
 package rocksdb
 
 import (
+	"github.com/alberts/gorocks"
 	"github.com/juju/errors"
-	"github.com/reborndb/qdb/extern/gorocks"
 )
 
 type Iterator struct {
