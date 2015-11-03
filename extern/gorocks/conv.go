@@ -17,3 +17,11 @@ func ucharToBool(uc C.uchar) bool {
 	}
 	return true
 }
+
+func boolToInt(b bool) C.int {
+	if b {
+		return C.int(1)
+	} else {
+		return C.int(0)
+	}
+}

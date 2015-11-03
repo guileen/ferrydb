@@ -27,3 +27,11 @@ func NewDefaultEnv() *Env {
 func (env *Env) Close() {
 	C.rocksdb_env_destroy(env.Env)
 }
+
+func (env *Env) SetBackgroundThreads(n int) {
+	C.rocksdb_env_set_background_threads(env.Env, C.int(n))
+}
+
+func (env *Env) SetHighPriorityBackgroundThreads(n int) {
+	C.rocksdb_env_set_high_priority_background_threads(env.Env, C.int(n))
+}

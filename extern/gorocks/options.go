@@ -11,6 +11,10 @@ type CompressionOpt int
 const (
 	NoCompression     = CompressionOpt(0)
 	SnappyCompression = CompressionOpt(1)
+	ZlibCompression   = CompressionOpt(2)
+	Bz2Compression    = CompressionOpt(3)
+	Lz4Compression    = CompressionOpt(4)
+	Lz4hcCompression  = CompressionOpt(5)
 )
 
 // Options represent all of the available options when opening a database with
@@ -208,4 +212,72 @@ func (wo *WriteOptions) Close() {
 // See the rocksdb documentation for details.
 func (wo *WriteOptions) SetSync(b bool) {
 	C.rocksdb_writeoptions_set_sync(wo.Opt, boolToUchar(b))
+}
+
+func (o *Options) SetNumLevels(n int) {
+	C.rocksdb_options_set_num_levels(o.Opt, C.int(n))
+}
+
+func (o *Options) SetMaxWriteBufferNumber(n int) {
+	C.rocksdb_options_set_max_write_buffer_number(o.Opt, C.int(n))
+}
+
+func (o *Options) SetMinWriteBufferNumberToMerge(n int) {
+	C.rocksdb_options_set_min_write_buffer_number_to_merge(o.Opt, C.int(n))
+}
+
+func (o *Options) SetLevel0FileNumCompactionTrigger(n int) {
+	C.rocksdb_options_set_level0_file_num_compaction_trigger(o.Opt, C.int(n))
+}
+
+func (o *Options) SetLevel0SlowdownWritesTrigger(n int) {
+	C.rocksdb_options_set_level0_slowdown_writes_trigger(o.Opt, C.int(n))
+}
+
+func (o *Options) SetLevel0StopWritesTrigger(n int) {
+	C.rocksdb_options_set_level0_stop_writes_trigger(o.Opt, C.int(n))
+}
+
+func (o *Options) SetTargetFileSizeBase(n int) {
+	C.rocksdb_options_set_target_file_size_base(o.Opt, C.uint64_t(n))
+}
+
+func (o *Options) SetTargetFileSizeMultiplier(n int) {
+	C.rocksdb_options_set_target_file_size_multiplier(o.Opt, C.int(n))
+}
+
+func (o *Options) SetMaxBytesForLevelBase(n int) {
+	C.rocksdb_options_set_max_bytes_for_level_base(o.Opt, C.uint64_t(n))
+}
+
+func (o *Options) SetMaxBytesForLevelMultiplier(n int) {
+	C.rocksdb_options_set_max_bytes_for_level_multiplier(o.Opt, C.int(n))
+}
+
+func (o *Options) SetDisableAutoCompactions(b bool) {
+	C.rocksdb_options_set_disable_auto_compactions(o.Opt, boolToInt(b))
+}
+
+func (o *Options) SetDisableDataSync(b bool) {
+	C.rocksdb_options_set_disable_data_sync(o.Opt, boolToInt(b))
+}
+
+func (o *Options) SetUseFsync(b bool) {
+	C.rocksdb_options_set_use_fsync(o.Opt, boolToInt(b))
+}
+
+func (o *Options) SetMaxBackgroundCompactions(n int) {
+	C.rocksdb_options_set_max_background_compactions(o.Opt, C.int(n))
+}
+
+func (o *Options) SetMaxBackgroundFlushes(n int) {
+	C.rocksdb_options_set_max_background_flushes(o.Opt, C.int(n))
+}
+
+func (o *Options) SetAllowOSBuffer(b bool) {
+	C.rocksdb_options_set_allow_os_buffer(o.Opt, boolToUchar(b))
+}
+
+func (o *Options) SetBlockBasedTableFactory(t *TableOptions) {
+	C.rocksdb_options_set_block_based_table_factory(o.Opt, t.Opt)
 }
