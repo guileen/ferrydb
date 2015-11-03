@@ -8,9 +8,9 @@
 package rocksdb
 
 import (
+	"github.com/guileen/ferrydb/extern/gorocks"
 	"github.com/guileen/ferrydb/pkg/engine"
 	"github.com/juju/errors"
-	"github.com/tobyhede/gorocks"
 )
 
 type Snapshot struct {

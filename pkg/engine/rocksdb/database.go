@@ -12,7 +12,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/alberts/gorocks"
+	"github.com/guileen/ferrydb/extern/gorocks"
 	"github.com/guileen/ferrydb/pkg/engine"
 	"github.com/juju/errors"
 )
@@ -54,7 +54,10 @@ func (db *RocksDB) init(path string, conf *Config, repair bool) error {
 	opts.SetCreateIfMissing(true)
 	opts.SetErrorIfExists(false)
 
-	opts.SetCompression(gorocks.Lz4Compression)
+	// TODO: use lz4
+	// opts.SetCompression(gorocks.Lz4Compression)
+	opts.SetCompression(gorocks.NoCompression)
+
 	opts.SetBlockSize(conf.BlockSize)
 	opts.SetWriteBufferSize(conf.WriteBufferSize)
 	opts.SetMaxOpenFiles(conf.MaxOpenFiles)

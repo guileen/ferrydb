@@ -8,7 +8,7 @@
 package rocksdb
 
 import (
-	"github.com/alberts/gorocks"
+	"github.com/guileen/ferrydb/extern/gorocks"
 	"github.com/juju/errors"
 )
 
