@@ -3,7 +3,7 @@
 // Copyright 2015 Reborndb Org. All Rights Reserved.
 // Licensed under the MIT (MIT-LICENSE.txt) license.
 
-// +build all rocksdb
+// - +build all rocksdb
 
 package rocksdb
 
